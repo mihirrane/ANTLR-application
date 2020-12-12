@@ -1,7 +1,7 @@
 import java.io.IOException;
 
-import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -18,7 +18,7 @@ public class JavaParserTest extends Java8BaseListener{
 //			return;
 //		}
 		String inputFile = "./src/Test.java";
-    	CharStream input = new ANTLRFileStream(inputFile);
+		CharStream input = CharStreams.fromFileName(inputFile);
     	Java8Lexer lexer = new Java8Lexer(input);
     	CommonTokenStream tokens = new CommonTokenStream(lexer);
     	Java8Parser parser = new Java8Parser(tokens); //create parser
@@ -27,6 +27,7 @@ public class JavaParserTest extends Java8BaseListener{
     	ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
     	JavaParserTest listener = new JavaParserTest(); // create a parse tree listener
     	walker.walk(listener, tree); // traverse parse tree with listener
+    	
     }
 
 	/**
@@ -34,10 +35,12 @@ public class JavaParserTest extends Java8BaseListener{
 	 */
 	@Override
 	public void enterStatement(Java8Parser.StatementContext ctx){
+
+//      part 2 
 		if(ctx.getStart().getText().equals("if")) {
 			String original = ctx.getChild(0).getChild(2).getText();
 			String candidate = original.toLowerCase();
-			int line_number = ctx.getStart().getLine();
+			int line_number = ctx.start.getLine();
 			
 			if(!candidate.startsWith("!") && (candidate.length()>3) && candidate.matches("[a-z]+[0-9]*"))
 				System.out.println(original +" " + line_number);
