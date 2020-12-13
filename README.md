@@ -32,7 +32,7 @@ Files:
   2. Test.java (Place it in the same directory)
   
 JavaParserTest reads Test.java and finds boolean variables satisfying above criteria and displays their name and line number.
-![](Images\JavaParserTest.jpg)
+![](Images/JavaParserTest.jpg)
 
 **Part 3: Rewrite Program Source Code with Parser**
 
@@ -53,7 +53,7 @@ The updated program from Test.java is written to BooleanOutputPrinted.java
 This is a part of the output from BooleanOutputPrinted.java
 
 In Test.java
-![](Images\BeforeBoolean.jpg)
+![](Images/BeforeBoolean.jpg)
 
 In BooleanOutputPrinted.java
-![](Images\AfterBoolean.jpg)
+![](Images/AfterBoolean.jpg)
